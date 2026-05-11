@@ -1,0 +1,142 @@
+"use client";
+
+import { Linkedin, Mail, Menu, X, Phone } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import ThemeToggle from "./ThemeToggle";
+
+const navLinks = [
+  { href: "#projects", label: "Work" },
+  { href: "#skills", label: "Skills" },
+  { href: "#experience", label: "Experience" },
+  { href: "#contact", label: "Contact" },
+];
+
+const Header = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false);
+      }
+    };
+    if (mobileMenuOpen) document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [mobileMenuOpen]);
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${scrolled
+        ? "bg-white/95 dark:bg-[#111827]/95 backdrop-blur-sm border-b border-zinc-200 dark:border-zinc-900"
+        : "bg-transparent dark:bg-transparent"
+        }`}
+      role="banner"
+    >
+      <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between max-md:px-4 max-md:py-3" aria-label="Main navigation">
+        <a
+          href="#home"
+          className="font-heading font-semibold text-lg tracking-tight transition-colors text-slate-900 hover:text-teal-600 dark:text-white dark:hover:text-teal-400"
+          title="Kenneth Rizaldy Soriano - Full Stack Engineer Portfolio Home"
+        >
+          Kenneth Rizaldy Soriano
+        </a>
+
+        <div className="hidden md:flex items-center gap-6">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="relative text-sm font-medium transition-colors text-slate-600 hover:text-teal-600 dark:text-gray-400 dark:hover:text-white after:absolute after:left-0 after:bottom-[-2px] after:h-0.5 after:w-0 after:bg-teal-500 dark:after:bg-teal-400 after:transition-[width] after:duration-200 hover:after:w-full"
+            >
+              {link.label}
+            </a>
+          ))}
+          <div className="h-4 w-px bg-slate-300 dark:bg-white/10" />
+          <ThemeToggle />
+          <div className="flex items-center gap-4">
+            <a
+              href="https://www.linkedin.com/in/kenneth-rizaldy-soriano-7159a0199/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-500 hover:text-teal-600 dark:text-gray-400 dark:hover:text-white transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-5 h-5" />
+            </a>
+            <a
+              href="mailto:sorianokenneth1998@gmail.com"
+              className="text-slate-500 hover:text-teal-600 dark:text-gray-400 dark:hover:text-white transition-colors"
+              aria-label="Email"
+            >
+              <Mail className="w-5 h-5" />
+            </a>
+            <a
+              href="tel:+639056891372"
+              className="text-slate-500 hover:text-teal-600 dark:text-gray-400 dark:hover:text-white transition-colors"
+              aria-label="Phone"
+            >
+              <Phone className="w-5 h-5" />
+            </a>
+          </div>
+        </div>
+
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            className="p-2 rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-gray-400 dark:hover:bg-white/10 dark:hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500/30 dark:focus:ring-white/20"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+      </nav>
+
+      {mobileMenuOpen && (
+        <div
+          ref={menuRef}
+          className="md:hidden absolute top-full left-0 right-0 bg-white dark:bg-[#111827]/95 border-b border-slate-200 dark:border-white/5 shadow-lg backdrop-blur-md"
+        >
+          <div className="px-4 py-6 space-y-1">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="block py-3 px-3 rounded-lg text-slate-700 hover:bg-slate-100 hover:text-teal-600 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-white font-medium transition-colors max-md:py-3.5 max-md:min-h-[48px] max-md:flex max-md:items-center"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="pt-4 mt-4 border-t border-slate-200 dark:border-white/5 flex items-center gap-4">
+              <ThemeToggle />
+              <div className="flex gap-2">
+                <a href="https://www.linkedin.com/in/kenneth-rizaldy-soriano-7159a0199/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-teal-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a href="mailto:sorianokenneth1998@gmail.com" className="p-2 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-teal-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">
+                  <Mail className="w-5 h-5" />
+                </a>
+                <a href="tel:+639056891372" className="p-2 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-teal-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">
+                  <Phone className="w-5 h-5" />+639056891372
+                </a>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Header;
