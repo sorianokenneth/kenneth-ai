@@ -34,6 +34,14 @@ const skillCategories = [
       { name: "Bootstrap", years: "7+", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
       { name: "Context API", years: "8+", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
       { name: "Vue.js", years: "5+", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
+      { name: "WordPress", years: "5+", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" },
+    ],
+  },
+  {
+    category: "CMS & E-Commerce",
+    skills: [
+      { name: "NetSuite", years: "3+", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" },
+      { name: "Shopify", years: "4+", icon: "https://cdn.simpleicons.org/shopify/96BF48" },
     ],
   },
   {
