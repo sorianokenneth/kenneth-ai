@@ -164,7 +164,7 @@ const ImageSlideshow = ({ images, projectName }: { images: string[]; projectName
 
 const projects: Project[] = [
   {
-    name: "Jellyfish",
+    name: "Engineering Intelligence Platform",
     category: "Engineering Intelligence · AI Analytics Platform",
     description: "Full-stack engineering analytics platform ingesting data from GitHub, Jira, and CI/CD systems to compute delivery metrics, detect workflow bottlenecks, and provide actionable insights via role-based dashboards. Powered by LLM analytics and AI copilots for natural-language querying of engineering performance.",
     metrics: [

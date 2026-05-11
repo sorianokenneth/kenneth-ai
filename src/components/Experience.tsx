@@ -7,6 +7,7 @@ const experiences = [
   {
     period: "May 2022 - Present",
     title: "Senior Full-Stack/AI Engineer",
+    company: "Jellyfish",
     project: "Engineering Intelligence Platform",
     description: [
       "Designed and developed a full-stack engineering analytics platform ingesting data from GitHub, Jira, and CI/CD systems to compute delivery metrics, detect workflow bottlenecks, and provide actionable insights via role-based dashboards."
@@ -44,6 +45,7 @@ const experiences = [
 {
     period: "Apr 2020 - Feb 2022",
     title: "Senior Python Engineer",
+    company: "Eze Castle Integration (ECI)",
     project: "Secure Financial Analytics Platform",
     description: [
       "Worked on a secure analytics and workflow platform for financial institutions, supporting transaction processing, reporting, and compliance for hedge funds and trading clients."
@@ -67,7 +69,8 @@ const experiences = [
   },
   {
     period: "Apr 2018 - Mar 2020",
-    title: "Junior Python Developer",
+    title: "Junior Full-stack/Python Developer",
+    company: "beepo",
     project: "beepo",
     description: [
       "Developed backend features and automation tools for client web applications and internal systems using Python, Django and Flask."
@@ -134,11 +137,19 @@ const Experience = () => {
                   </div>
                 </div>
                 <div className="flex-1 space-y-4">
-                  <div className="flex items-center gap-2">
-                    <Briefcase className="w-4 h-4 text-teal-500 dark:text-gray-500 flex-shrink-0" />
-                    <h3 className="font-heading text-xl sm:text-2xl font-bold text-slate-900 dark:text-white max-md:text-lg">
-                      {exp.title}
-                    </h3>
+                  <div className="flex items-start gap-2">
+                    <Briefcase 
+                      style={{"marginTop": "10px"}}
+                      className="w-4 h-4 text-teal-500 dark:text-gray-500 flex-shrink-0 mt-1"
+                    />
+                    <div>
+                      <h3 className="font-heading text-xl sm:text-2xl font-bold text-slate-900 dark:text-white max-md:text-lg">
+                        {exp.company}
+                      </h3>
+                      <p className="text-sm font-medium text-teal-600 dark:text-teal-400 mt-0.5">
+                        {exp.title}
+                      </p>
+                    </div>
                   </div>
                   <div className="space-y-2 text-slate-600 dark:text-gray-300 leading-relaxed max-md:text-sm">
                     {exp.description.map((line, i) => (
